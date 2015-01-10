@@ -658,7 +658,12 @@ core =
     assertions.function f
     bind @, arguments
     m.partial.apply null, arguments
-
+    
+  'rand_$_nth': (coll) ->
+    assertions.arity 1, arguments.length
+    assertions.stack coll
+    m.nth coll, _.random m.count(coll) - 1
+    
 
   # interop functions
   'clj_$__$GT_js': (x) ->

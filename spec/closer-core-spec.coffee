@@ -1251,3 +1251,14 @@ describe 'Closer core library', ->
     it 'recursively transforms JS objects to maps, and JS arrays to vectors', ->
       throws '(js->clj :key [])'
       eq '(js->clj (clj->js { :a [1 2] :b #{3 4} }))', map 'a', vec(1, 2), 'b', vec(3, 4)
+        
+  describe '(rand-nth coll)', ->
+    it 'returns a random item from list or vector', ->
+      throws '(rand-nth [1 2] [3 4])'   # wrong arity
+      throws '(rand-nth #{1 2})'   # doesn't work with sets
+      throws '(rand-nth {1 2})'   # doesn't work with maps
+      throws '(rand-nth [])'      #doesn't work with empty vectors
+      throws '(rand-nth \'())'    #doesn't work with empty list
+      nil '(rand-nth nil)'
+      eq '(rand-nth \'(1 1 1))', 1   # returns random item of list
+      eq '(rand-nth [1 1 1])', 1   # returns random item of vector
