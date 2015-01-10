@@ -1241,6 +1241,18 @@ describe 'Closer core library', ->
       eq '((partial identity) 3)', 3
       eq '((partial identity 3))', 3
       eq '(def times-hundred (partial * 100)) (times-hundred 5)', 500
+        
+  describe '(distinct coll)', ->
+    it 'returns the unique items of a list or vector', ->
+      throws '(distinct [1 1] [4 4])'   # wrong arity
+      throws '(distinct #{1 1})'   # doesn't work with sets
+      throws '(distinct {1 1})'   # doesn't work with maps
+      throws '(distinct (seq #{1 1}))'   # doesn't work with seqs
+      eq '(distinct nil)', emptySeq()
+      eq '(distinct [])', emptySeq()
+      eq '(distinct \'())', emptySeq()
+      eq '(distinct \'(1 2 2))', seq([1,2])  # returns the unique items in a list
+      eq '(distinct [1 2 2])', seq([1,2])   # returns unique items of vector
 
   describe '(clj->js x)', ->
     it 'recursively transforms maps to JS objects, collections to JS arrays, and keywords to JS strings', ->

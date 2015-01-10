@@ -663,7 +663,11 @@ core =
     assertions.arity 1, arguments.length
     assertions.stack coll
     m.nth coll, _.random m.count(coll) - 1
-    
+
+  'distinct': (coll) ->
+    assertions.arity 1, arguments.length
+    assertions.stack coll
+    m.distinct coll
 
   # interop functions
   'clj_$__$GT_js': (x) ->
