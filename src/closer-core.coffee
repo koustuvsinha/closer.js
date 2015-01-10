@@ -658,6 +658,11 @@ core =
     assertions.function f
     bind @, arguments
     m.partial.apply null, arguments
+    
+  'distinct': (coll) ->
+    assertions.arity 1, arguments.length
+    assertions.stack coll
+    m.distinct coll
 
 
   # interop functions
