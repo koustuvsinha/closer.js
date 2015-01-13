@@ -1308,8 +1308,8 @@ describe 'Closer core library', ->
   describe '(frequencies coll)', ->
     it 'returns the map of distinct items in coll to their frequencies', ->
       throws '(frequencies [1 2 2 1] [1 2 1])' # wrong arity
-      eq '(frequencies [1 2 1 1 1])', map "1",4,"2",1  # works with vectors
-      eq '(frequencies \'(1 2 1 1 1))', map "1",4,"2",1  # works with lists
+      eq '(frequencies [1 2 1 1 1])', map 1,4,2,1  # works with vectors
+      eq '(frequencies \'(1 2 1 1 1))', map 1,4,2,1  # works with lists
       eq '(frequencies "coffee")', map "c",1,"o",1,"f",2,"e",2  # works with strings
       
       
